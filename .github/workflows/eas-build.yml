@@ -54,5 +54,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           body_path: release.md
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
