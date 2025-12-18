@@ -1,0 +1,76 @@
+name: Bug Report
+description: Segnala un bug che hai trovato
+title: "[BUG] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie per il report! Per favore riempi i dettagli sottostanti.
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrizione del bug
+      description: Descrivi il bug in dettaglio
+      placeholder: Il bug accade quando...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Come riprodurre il bug
+      placeholder: |
+        1. Vai a...
+        2. Clicca su...
+        3. Vedi l'errore...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento atteso
+      description: Cosa dovrebbe accadere
+      placeholder: Dovrebbe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamento effettivo
+      description: Cosa accade effettivamente
+      placeholder: Invece accade...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - iPhone
+        - Android Phone
+        - iPad
+        - Android Tablet
+        - Web
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS Version
+      placeholder: es: iOS 16.0, Android 13
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error logs
+      description: Incolla i log se disponibili
+      render: shell

@@ -1,0 +1,23 @@
+{
+    "name": "QuitTasks",
+    "description": "Task Manager con NLP - Gestione task intelligente con parsing del linguaggio naturale",
+    "topics": [
+        "react-native",
+        "expo",
+        "typescript",
+        "task-manager",
+        "nlp",
+        "zustand",
+        "mobile-app"
+    ],
+    "homepage": "https://github.com/fabiofidone1978/QuitTasks",
+    "bugs": {
+        "url": "https://github.com/fabiofidone1978/QuitTasks/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fabiofidone1978/QuitTasks.git"
+    },
+    "author": "Fabio Fidone",
+    "license": "MIT"
+}
