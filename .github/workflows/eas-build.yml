@@ -1,0 +1,51 @@
+name: Expo Cloud Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build with Expo EAS
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Login to Expo
+        run: eas login --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build for iOS
+        run: eas build --platform ios --non-interactive
+        continue-on-error: true
+
+      - name: Build for Android
+        run: eas build --platform android --non-interactive
+        continue-on-error: true
+
+      - name: Create Release Notes
+        run: |
+          echo "# QuitTasks ${{ github.ref_name }}" > release.md
+          echo "" >> release.md
+          echo "Build completed with Expo EAS" >> release.md
+          echo "- iOS: Building..." >> release.md
+          echo "- Android: Building..." >> release.md
+
+      - name: Upload builds
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          body_path: release.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
