@@ -31,6 +31,12 @@ Tutti i cambiamenti notevoli a questo progetto verranno documentati in questo fi
 
 ## [Unreleased]
 
+### Fixed
+- Fixed TypeScript configuration issue preventing compilation
+  - Updated react-native-gesture-handler to valid version (~2.16.0)
+  - Removed jest types from tsconfig.json (project has no test infrastructure)
+  - Resolved all 74 TypeScript compilation errors
+
 ### Planned
 - Persistent storage con AsyncStorage
 - IAP integration
