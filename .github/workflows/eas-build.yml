@@ -21,28 +21,35 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Login to Expo
-        run: eas login --non-interactive
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      - name: Setup Expo Token
+        run: echo "EXPO_TOKEN=${{ secrets.EXPO_TOKEN }}" >> $GITHUB_ENV
 
       - name: Build for iOS
         run: eas build --platform ios --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         continue-on-error: true
 
       - name: Build for Android
         run: eas build --platform android --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         continue-on-error: true
 
       - name: Create Release Notes
         run: |
           echo "# QuitTasks ${{ github.ref_name }}" > release.md
           echo "" >> release.md
-          echo "Build completed with Expo EAS" >> release.md
-          echo "- iOS: Building..." >> release.md
-          echo "- Android: Building..." >> release.md
+          echo "## Build Status" >> release.md
+          echo "✅ Builds started with Expo EAS Cloud" >> release.md
+          echo "" >> release.md
+          echo "### Downloads" >> release.md
+          echo "- iOS: Check Expo dashboard" >> release.md
+          echo "- Android: Check Expo dashboard" >> release.md
+          echo "" >> release.md
+          echo "View builds at: https://expo.dev/dashboard" >> release.md
 
-      - name: Upload builds
+      - name: Upload Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
