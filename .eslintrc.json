@@ -1,0 +1,25 @@
+{
+    "root": true,
+    "extends": [
+        "expo",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "react-native/no-unused-styles": "warn",
+        "react-native/no-inline-styles": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error"
+                ]
+            }
+        ]
+    }
+}
